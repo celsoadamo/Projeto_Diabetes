@@ -1,0 +1,17 @@
+FROM python:3.9
+
+RUN mkdir ml
+
+WORKDIR /ml
+
+COPY src/requirements.txt requirements.txt
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY src/ .
+
+RUN chmod +x start.sh
+
+EXPOSE 80
+
+ENTRYPOINT ["./start.sh", "start"]
